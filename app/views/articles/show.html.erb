@@ -1,0 +1,85 @@
+<style>
+
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  
+}
+
+h3 {
+  text-align: center;
+  
+}
+
+p {
+    text-align: center;
+}
+
+ul {
+    text-align: center;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+div.ex3 {
+  background-color: lightblue;
+  width: 110px;
+  height: 110px;
+  overflow: auto;
+}
+
+.newspaper {
+  column-width: 50px;
+}
+
+</style>
+
+<h1><%= @article.title %></h1>
+
+<p><%= @article.body %></p>
+
+<ul style="list-style-type:none">
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li><%= link_to "Destroy", article_path(@article), data:{
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                    }%></li>
+</ul> 
+
+<h2>Comments</h2>
+<h3>Number of comments</h3>
+
+<div style="width:15%; margin:0 auto;">
+Our blog has <%= @article.comments.public_count %> comments and counting!
+</div>
+
+
+<div class="row">
+ <div class="column" style="background-color:#aaa;" class="ex3" class="newspaper">
+<%= render @article.comments %>
+</div>
+<div class="column" style="background-color:#bbb;" class="ex1">
+<h2>Add a comment:</h2>
+
+  <p>
+    <div style="width:8%; margin:0 auto;">
+    <%= render 'comments/form' %>
+    <button onclick="history.back()"><<</button>
+    <button onclick="history.forward()">>></button>
+    </div>
+  </p>
+  </div>
+</div>
